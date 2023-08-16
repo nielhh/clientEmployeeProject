@@ -35,9 +35,13 @@ namespace skeleton.Controllers
         }
         [HttpPost]
         [Route("AddEmployee")]
-        public async Task<IActionResult> sPost(Employee employee)
+        public async Task<IActionResult> Post(Employee employee)
         {
-        
+            if (employee.BirthDate.Year < DateTime.Now.Year - 100) {
+                return StatusCode(StatusCodes.Status400BadRequest, "Person can not be older than 150 years old");
+
+            }
+
             var result = await _employee.InsertEmployee(employee);
             if (result.EmployeeID == 0)
             {
