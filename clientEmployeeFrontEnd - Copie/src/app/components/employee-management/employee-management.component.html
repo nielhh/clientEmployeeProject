@@ -1,0 +1,61 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <label for="name">First Name:</label>
+    <input type="text" id="name" formControlName="name">
+    <div *ngIf="employeeForm.get('name')?.invalid && (employeeForm.get('name')?.dirty || employeeForm.get('name')?.touched)">
+      <div *ngIf="employeeForm.get('name')?.hasError('required')">First name is required.</div>
+    </div>
+  
+    <label for="firstName">Last Name:</label>
+    <input type="text" id="firstName" formControlName="firstName">
+    <div *ngIf="employeeForm.get('firstName')?.invalid && (employeeForm.get('firstName')?.dirty || employeeForm.get('firstName')?.touched)">
+      <div *ngIf="employeeForm.get('firstName')?.hasError('required')">Last name is required.</div>
+    </div>
+  
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="employeeForm.get('email')?.invalid && (employeeForm.get('email')?.dirty || employeeForm.get('email')?.touched)">
+      <div *ngIf="employeeForm.get('email')?.hasError('required')">Email is required.</div>
+    </div>
+  
+    <label for="birthDate">birthDate:</label>
+    <input type="date" id="birthDate" formControlName="birthDate">
+    <div *ngIf="employeeForm.get('birthDate')?.invalid && (employeeForm.get('birthDate')?.dirty || employeeForm.get('birthDate')?.touched)">
+      <div *ngIf="employeeForm.get('birthDate')?.hasError('required')">birthDate is required.</div>
+    </div>
+  
+    <label for="clientId">clientId:</label>
+    <input type="text" id="clientId" formControlName="clientId">
+    <div *ngIf="employeeForm.get('clientId')?.invalid && (employeeForm.get('clientId')?.dirty || employeeForm.get('clientId')?.touched)">
+      <div *ngIf="employeeForm.get('clientId')?.hasError('required')">clientId is required.</div>
+    </div>
+  
+    <button type="submit" [disabled]="!employeeForm.valid">Submit</button>
+  </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Date de Naissance</th>
+                <th>Client</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.birthDate | date : "dd/mm/yyyy"}}</td>
+                <td>{{employee.clientId}}</td>
+                <td>
+                    <button>Edit</button>
+                    <button (click)="deleteItem(employee.employeeID)">Delete</button>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <button>Add</button>
