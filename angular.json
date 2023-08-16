@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-tour-of-heroes": {
+    "employeeClient": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-tour-of-heroes",
+            "outputPath": "dist/employeeClient",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,12 +67,16 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "employeeClient:build",
+            "proxyConfig": "src/proxy.conf.json"
+       },
           "configurations": {
             "production": {
-              "browserTarget": "angular-tour-of-heroes:build:production"
+              "browserTarget": "employeeClient:build:production"
             },
             "development": {
-              "browserTarget": "angular-tour-of-heroes:build:development"
+              "browserTarget": "employeeClient:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-tour-of-heroes:build"
+            "browserTarget": "employeeClient:build"
           }
         },
         "test": {
@@ -103,5 +107,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "65836879-1e79-41ea-a519-b201d4a81832"
   }
 }
